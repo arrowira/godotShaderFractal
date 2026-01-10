@@ -12,16 +12,18 @@ shader_parameter/timeMod = 0.1
 shader_parameter/pixelation = 1.0
 shader_parameter/bold = 10.0
 shader_parameter/sharp = 10.0
+shader_parameter/moveSpeed = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
 shader = ExtResource("1_ig7tw")
-shader_parameter/innerColor = Color(0.3691067, 0.60938144, 0.54161394, 1)
-shader_parameter/outerColor = Color(0.14689097, 0.28609028, 0.38229984, 1)
-shader_parameter/scale = 3.0
+shader_parameter/innerColor = Color(0.5888488, 0.5496986, 1, 1)
+shader_parameter/outerColor = Color(0.15215337, 0.18902498, 0.3440186, 1)
+shader_parameter/scale = 5.0
 shader_parameter/timeMod = 0.1
 shader_parameter/pixelation = 1.0
 shader_parameter/bold = 5.0
-shader_parameter/sharp = 3.0
+shader_parameter/sharp = 2.0
+shader_parameter/moveSpeed = 0.1
 
 [node name="Node2D" type="Node2D"]
 

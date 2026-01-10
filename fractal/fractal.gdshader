@@ -7,7 +7,7 @@ uniform float timeMod = 3.0;
 uniform float pixelation = 10.0;
 uniform float bold = 10.0;
 uniform float sharp = 10.0;
-
+uniform float moveSpeed = 1.0;
 
 #define iTime (TIME*timeMod)
 
@@ -68,11 +68,11 @@ vec4 shade(float degree){
 }
 
 float pattern(vec2 uv){
-	return perlinNoise(uv + perlinNoise(uv+perlinNoise(uv-iTime)) + iTime);
+	return perlinNoise(uv + perlinNoise(uv+perlinNoise(uv-iTime)) + iTime*moveSpeed);
 }
 
 void fragment()
 {
 	vec2 uv = floor(UV/SCREEN_PIXEL_SIZE/pixelation)*pixelation*SCREEN_PIXEL_SIZE;
-	COLOR = shade(pattern(scale*uv + iTime));
+	COLOR = shade(pattern(scale*uv + iTime*moveSpeed));
 }
