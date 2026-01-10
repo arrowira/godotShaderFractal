@@ -2,9 +2,12 @@ shader_type canvas_item;
 uniform vec4 innerColor: source_color = vec4(0,0,0,1);
 uniform vec4 outerColor: source_color = vec4(0,0,0,1);
 
-const float scale = 5.0;
+uniform float scale = 5.0;
 uniform float timeMod = 3.0;
 uniform float pixelation = 10.0;
+uniform float bold = 10.0;
+uniform float sharp = 10.0;
+
 
 #define iTime (TIME*timeMod)
 
@@ -57,19 +60,19 @@ float perlinNoise(vec2 P) {
     float nx1 = mix(n01, n11, fade_xy.x);
     float nxy = mix(nx0, nx1, fade_xy.y);
 
-    return 10.0 * nxy; // Scale to roughly [-1, 1]
+    return bold * nxy; // Scale to roughly [-1, 1]
 }
 
 vec4 shade(float degree){
-	return mix(innerColor,outerColor, degree);
+	return mix(innerColor,outerColor, floor(degree*sharp)/sharp);
 }
 
 float pattern(vec2 uv){
-	return perlinNoise(uv + perlinNoise(uv+perlinNoise(uv+(iTime/5.0)))+iTime);
+	return perlinNoise(uv + perlinNoise(uv+perlinNoise(uv-iTime)) + iTime);
 }
 
 void fragment()
 {
 	vec2 uv = floor(UV/SCREEN_PIXEL_SIZE/pixelation)*pixelation*SCREEN_PIXEL_SIZE;
-	COLOR = shade(pattern(uv));
+	COLOR = shade(pattern(scale*uv + iTime));
 }
