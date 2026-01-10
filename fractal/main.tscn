@@ -5,7 +5,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
 shader = ExtResource("1_ig7tw")
-shader_parameter/target = Vector2(0.5, 0.5)
+shader_parameter/innerColor = Color(0.50092757, 0.6917608, 0.68269753, 1)
+shader_parameter/outerColor = Color(0.23413244, 0.56115574, 0.62565047, 1)
+shader_parameter/timeMod = 0.1
+shader_parameter/pixelation = 10.0
 
 [node name="Node2D" type="Node2D"]
 
