@@ -3,6 +3,18 @@
 [ext_resource type="Shader" uid="uid://ck828wocep53v" path="res://fractal.gdshader" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c2my3725p4uu4" path="res://color_rect.gd" id="2_0xm2m"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
+shader = ExtResource("1_ig7tw")
+shader_parameter/innerColor = Color(0.68407565, 0.60691214, 0.48709005, 1)
+shader_parameter/outerColor = Color(0.06736552, 0.088287525, 0.18180597, 1)
+shader_parameter/scale = 3.0
+shader_parameter/timeMod = 1.0
+shader_parameter/pixelation = 10.0
+shader_parameter/bold = 1.0
+shader_parameter/sharp = 10.0
+shader_parameter/moveSpeed = 0.0
+shader_parameter/focusPoint = Vector2(0.5, 0.5)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
 shader = ExtResource("1_ig7tw")
 shader_parameter/innerColor = Color(0, 0, 0, 0.3764706)
@@ -13,30 +25,11 @@ shader_parameter/pixelation = 1.0
 shader_parameter/bold = 10.0
 shader_parameter/sharp = 10.0
 shader_parameter/moveSpeed = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
-shader = ExtResource("1_ig7tw")
-shader_parameter/innerColor = Color(0.5888488, 0.5496986, 1, 1)
-shader_parameter/outerColor = Color(0.15215337, 0.18902498, 0.3440186, 1)
-shader_parameter/scale = 5.0
-shader_parameter/timeMod = 0.1
-shader_parameter/pixelation = 1.0
-shader_parameter/bold = 5.0
-shader_parameter/sharp = 2.0
-shader_parameter/moveSpeed = 0.1
+shader_parameter/focusPoint = Vector2(0.5, 0.5)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_h2yge")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_0xm2m")
@@ -46,3 +39,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_0xm2m")
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_h2yge")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

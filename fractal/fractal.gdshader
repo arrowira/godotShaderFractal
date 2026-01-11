@@ -9,6 +9,8 @@ uniform float bold = 10.0;
 uniform float sharp = 10.0;
 uniform float moveSpeed = 1.0;
 
+uniform vec2 focusPoint = vec2(0.5,0.5);
+
 #define iTime (TIME*timeMod)
 
 float rand(vec2 co) {
@@ -68,11 +70,20 @@ vec4 shade(float degree){
 }
 
 float pattern(vec2 uv){
-	return perlinNoise(uv + perlinNoise(uv+perlinNoise(uv-iTime)) + iTime*moveSpeed);
+	return perlinNoise(uv + perlinNoise(uv+perlinNoise(uv-iTime)) + iTime*moveSpeed)/(1.0);
 }
 
 void fragment()
 {
-	vec2 uv = floor(UV/SCREEN_PIXEL_SIZE/pixelation)*pixelation*SCREEN_PIXEL_SIZE;
+	//vec2 focusPoint = vec2(0.3*sin(TIME)+0.5,0.2*cos(TIME)+0.5);
+	
+	
+	vec2 px=pixelation*SCREEN_PIXEL_SIZE;
+	vec2 uv = (floor(UV/px)*px);
+	
+	float focusMod = clamp((1.0-(1.0/(distance(uv, focusPoint)*50.0))), 0, 1);
+	uv = uv*focusMod;
+	
+	
 	COLOR = shade(pattern(scale*uv + iTime*moveSpeed));
 }
